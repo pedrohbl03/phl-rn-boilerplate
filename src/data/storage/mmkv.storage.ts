@@ -2,25 +2,14 @@ import { createMMKV, type MMKV } from 'react-native-mmkv';
 import type { IStorage } from './storage.interface';
 
 /**
- * Instância singleton do MMKV
- * Inicializada imediatamente para estar disponível para o Zustand e outros consumidores
- */
-let mmkvInstance: MMKV | null = null;
-
-const getMMKVInstance = (): MMKV => {
-  if (!mmkvInstance) {
-    mmkvInstance = createMMKV({ id: 'app-storage' });
-  }
-  return mmkvInstance;
-};
-
-/**
- * Singleton do Storage usando MMKV
- * Pode ser acessado de qualquer lugar da aplicação
+ * Implementação do Storage usando MMKV
+ * Extremamente rápido e eficiente para React Native
  */
 class MMKVStorage implements IStorage {
-  private get storage(): MMKV {
-    return getMMKVInstance();
+  private storage: MMKV;
+
+  constructor(id: string = 'app-storage') {
+    this.storage = createMMKV({ id });
   }
 
   setString = (key: string, value: string): void => {
@@ -81,15 +70,8 @@ class MMKVStorage implements IStorage {
 }
 
 /**
- * Instância singleton do Storage
- * Use esta instância em toda a aplicação
+ * Factory para criar instância do MMKV Storage
  */
-export const storage = new MMKVStorage();
-
-/**
- * Factory para criar instância do Storage (mantida para compatibilidade)
- * @deprecated Use a instância `storage` diretamente
- */
-export const createStorage = (_id?: string): IStorage => {
-  return storage;
+export const createMMKVStorage = (id?: string): IStorage => {
+  return new MMKVStorage(id);
 };

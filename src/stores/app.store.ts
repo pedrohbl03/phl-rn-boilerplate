@@ -1,20 +1,24 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist, StateStorage } from 'zustand/middleware';
-import { storage } from '@/data/storage';
+import { getStorage } from '@/core/config';
 
 /**
- * Adapter para usar MMKV Storage singleton como storage do Zustand
+ * Adapter para usar storageService como storage do Zustand
+ * O storageService deve ser inicializado via bootstrapApp antes do uso
  */
+
+const storageService = getStorage();
+
 const zustandStorage: StateStorage = {
   getItem: (name: string) => {
-    const value = storage.getString(name);
+    const value = storageService.getString(name);
     return value ?? null;
   },
   setItem: (name: string, value: string) => {
-    storage.setString(name, value);
+    storageService.setString(name, value);
   },
   removeItem: (name: string) => {
-    storage.delete(name);
+    storageService.delete(name);
   },
 };
 

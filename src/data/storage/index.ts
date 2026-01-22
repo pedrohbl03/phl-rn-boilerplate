@@ -1,3 +1,9 @@
 export type { IStorage } from './storage.interface';
 export { STORAGE_KEYS } from './storage.interface';
-export { storage, createStorage } from './mmkv.storage';
+export { createMMKVStorage } from './mmkv.storage';
+export { 
+  storageService, 
+  initializeStorage, 
+  getStorageService,
+  isStorageInitialized,
+} from './storage.service';

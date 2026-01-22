@@ -30,7 +30,7 @@ interface AppProviderProps {
 /**
  * Provider principal que encapsula toda a aplicação
  * Responsável por:
- * - Inicializar o container de DI
+ * - Inicializar dependências (httpClient)
  * - Configurar React Query
  * - Configurar i18n
  * - Configurar SafeArea e GestureHandler
@@ -43,7 +43,8 @@ export function AppProvider({ children }: AppProviderProps) {
   useEffect(() => {
     const initialize = async () => {
       try {
-        // Inicializa as dependências da aplicação
+        // Inicializa dependências (httpClient, etc.)
+        // O storage já é auto-inicializado quando acessado
         bootstrapApp();
 
         // Sincroniza o idioma do i18n com o store

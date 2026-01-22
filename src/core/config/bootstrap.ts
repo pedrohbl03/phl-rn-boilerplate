@@ -2,7 +2,12 @@
  * Bootstrap da aplicação
  * Configuração simplificada de dependências
  */
-import { storage, IStorage } from '@/data/storage';
+import { 
+  createMMKVStorage, 
+  initializeStorage, 
+  getStorageService,
+  type IStorage,
+} from '@/data/storage';
 import { createHttpClient, IHttpClient } from '@/data/api';
 import { env } from './env';
 
@@ -20,17 +25,21 @@ export const bootstrapApp = (): void => {
     return;
   }
 
-  // Inicializa HTTP Client (storage já é singleton)
+  // Inicializa Storage com implementação MMKV
+  const storage = createMMKVStorage('app-storage');
+  initializeStorage(storage);
+
+  // Inicializa HTTP Client
   httpClient = createHttpClient(storage, env.API_URL);
   
   initialized = true;
 };
 
 /**
- * Retorna a instância do Storage (singleton)
+ * Retorna a instância do Storage
  */
 export const getStorage = (): IStorage => {
-  return storage;
+  return getStorageService();
 };
 
 /**
