@@ -1,0 +1,46 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@/app/*": [
+        "src/app/*"
+      ],
+      "@/core/*": [
+        "src/core/*"
+      ],
+      "@/data/*": [
+        "src/data/*"
+      ],
+      "@/domain/*": [
+        "src/domain/*"
+      ],
+      "@/presentation/*": [
+        "src/presentation/*"
+      ],
+      "@/providers/*": [
+        "src/providers/*"
+      ],
+      "@/i18n/*": [
+        "src/i18n/*"
+      ],
+      "@/stores/*": [
+        "src/stores/*"
+      ],
+      "@/types/*": [
+        "src/types/*"
+      ]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts",
+    "nativewind-env.d.ts"
+  ]
+}
