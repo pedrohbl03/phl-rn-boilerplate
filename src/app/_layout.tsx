@@ -5,6 +5,7 @@ import * as SplashScreen from 'expo-splash-screen';
 
 import { AppProvider, useAppReady } from '@/providers';
 import { ThemeProvider, useTheme } from '@/providers/ThemeProvider';
+import { DebugFAB } from '@/components';
 
 // Mantém a splash screen visível enquanto o app carrega
 SplashScreen.preventAutoHideAsync();
@@ -42,6 +43,7 @@ function RootLayoutContent() {
       >
         <Stack.Screen name="(tabs)" />
       </Stack>
+      <DebugFAB />
     </>
   );
 }
