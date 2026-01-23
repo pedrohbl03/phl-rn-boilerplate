@@ -53,24 +53,6 @@ function updateAppName() {
   }
 }
 
-// Function to run pod install for iOS
-function setupIOS() {
-  const iosPath = path.join(projectRoot, 'ios');
-  
-  if (fs.existsSync(iosPath)) {
-    try {
-      console.log('📱 Setting up iOS...');
-      execSync('cd ios && pod install', { 
-        stdio: 'inherit',
-        cwd: projectRoot 
-      });
-      console.log('✅ iOS setup complete');
-    } catch (error) {
-      console.log('⚠️  Could not run pod install. Run manually: cd ios && pod install');
-    }
-  }
-}
-
 // Main setup
 try {
   if (isNewProject()) {
