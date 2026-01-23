@@ -1,6 +1,6 @@
 {
   "name": "phl-rn-boilerplate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A React Native boilerplate with Expo Router, TanStack Query, Zustand, NativeWind, i18n, and more",
   "main": "expo-router/entry",
   "keywords": [
