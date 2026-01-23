@@ -64,9 +64,11 @@ try {
     
     console.log('\n✨ Setup complete! Your project is ready.\n');
     console.log('📚 Next steps:');
-    console.log('   1. Run "yarn ios" or "yarn android" to start');
-    console.log('   2. Check the README.md for more information');
-    console.log('   3. Start building your app!\n');
+    console.log('   1. Navigate to your project directory');
+    console.log('   2. Run "npx expo prebuild" to set up native code (necessary for iOS/Android builds)');
+    console.log('   3. Run "yarn ios" or "yarn android" to start');
+    console.log('   4. Check the README.md for more information');
+    console.log('   5. Start building your app!\n');
   }
 } catch (error) {
   console.log('⚠️  Setup encountered an issue:', error.message);
