@@ -224,6 +224,17 @@ src/
 
 ### Installation
 
+#### Using npx (Recommended)
+
+```bash
+npx create-expo-app my-app -t phl-rn-boilerplate
+cd my-app
+```
+
+Then skip to step 4 (prebuild).
+
+#### Manual Installation
+
 1. Clone the repository:
 ```bash
 git clone https://github.com/your-username/phl-rn-boilerplate.git
