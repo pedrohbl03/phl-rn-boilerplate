@@ -62,7 +62,7 @@ export function DebugFAB() {
 
   const deviceInfo = {
     'Modelo': Device.modelName ?? 'N/A',
-    'Device ID': Application.getAndroidId?.() ?? Device.osBuildId ?? 'N/A',
+    'Device ID': Platform.OS === 'android' ? Application.getAndroidId() ?? 'N/A' : Device.osBuildId ?? 'N/A',
     'OS': `${Device.osName} ${Device.osVersion}`,
     'Device Type': getDeviceType(Device.deviceType),
     'Brand': Device.brand ?? 'N/A',
