@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="hero-image.png" alt="PHL RN Boilerplate" />
+  <img src="./assets/hero-image.png" alt="PHL RN Boilerplate" />
 </p>
 
 # PHL RN Boilerplate
