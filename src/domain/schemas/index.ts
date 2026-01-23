@@ -1,2 +1,2 @@
-// Schemas de validação com Zod
-// Adicione seus schemas aqui conforme necessário
+// Validation schemas with Zod
+// Add your schemas here as needed

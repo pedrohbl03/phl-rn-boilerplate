@@ -27,7 +27,7 @@ export function useSettingsViewModel() {
   const languageLabel = t('settings.language');
   const languageDescription = t('settings.languageDescription');
 
-  // Opções de idioma
+  // Language options
   const languageOptions = [
     {
       label: t('settings.portuguese'),
@@ -46,12 +46,12 @@ export function useSettingsViewModel() {
     ? 'Suas preferências são salvas automaticamente no dispositivo.'
     : 'Your preferences are automatically saved on the device.';
 
-  // Cor do ícone baseada no tema (usada em componentes que não suportam dark: prefix)
+  // Icon color based on theme (used in components that don't support dark: prefix)
   const colors = {
     iconColor: isDark ? '#60a5fa' : '#2563eb',
   };
 
-  // Ações disponíveis
+  // Available actions
   const handleToggleTheme = useCallback(() => {
     toggleTheme();
   }, [toggleTheme]);
@@ -82,7 +82,7 @@ export function useSettingsViewModel() {
     // Cores
     colors,
     
-    // Ações
+    // Actions
     handleToggleTheme,
     handleLanguageChange,
   };

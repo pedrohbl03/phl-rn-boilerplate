@@ -1,2 +1,2 @@
-// Entidades do domínio
-// Adicione suas entidades aqui conforme necessário
+// Domain entities
+// Add your entities here as needed

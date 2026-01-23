@@ -118,7 +118,7 @@ function MVVMCard({ icon, title, description, color }: MVVMCardProps) {
   );
 }
 
-// Componente auxiliar para itens de benefício
+// Helper component for benefit items
 interface BenefitItemProps {
   text: string;
   iconColor: string;

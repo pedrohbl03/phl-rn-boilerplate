@@ -13,7 +13,7 @@ const resources = {
 // Detecta o idioma do dispositivo
 const deviceLanguage = Localization.getLocales()[0]?.languageTag ?? 'pt-BR';
 
-// Verifica se o idioma do dispositivo é suportado
+// Check if device language is supported
 const supportedLanguages = Object.keys(resources);
 const initialLanguage = supportedLanguages.includes(deviceLanguage)
   ? deviceLanguage

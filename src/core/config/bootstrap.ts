@@ -11,7 +11,7 @@ import {
 import { createHttpClient, IHttpClient } from '@/data/api';
 import { env } from './env';
 
-// Instâncias das dependências
+// Dependency instances
 let httpClient: IHttpClient | null = null;
 let initialized = false;
 

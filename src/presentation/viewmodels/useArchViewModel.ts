@@ -42,7 +42,7 @@ export function useArchViewModel() {
     },
   ];
 
-  // Benefícios da arquitetura
+  // Architecture benefits
   const benefits = [
     t('arch.benefit1'),
     t('arch.benefit2'),
@@ -70,7 +70,7 @@ export function useArchViewModel() {
     { text: '└── i18n/', isFolder: true },
   ];
 
-  // Cor do ícone baseada no tema (usada em componentes que não suportam dark: prefix)
+  // Icon color based on theme (used in components that don't support dark: prefix)
   const colors = {
     iconColor: isDark ? '#60a5fa' : '#2563eb',
   };

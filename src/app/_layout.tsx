@@ -7,7 +7,7 @@ import { AppProvider, useAppReady } from '@/providers';
 import { ThemeProvider, useTheme } from '@/providers/ThemeProvider';
 import { DebugFAB } from '@/components';
 
-// Mantém a splash screen visível enquanto o app carrega
+// Keep splash screen visible while app is loading
 SplashScreen.preventAutoHideAsync();
 
 /**
@@ -19,7 +19,7 @@ function RootLayoutContent() {
 
   const onLayoutRootView = useCallback(async () => {
     if (isReady) {
-      // Esconde a splash screen com uma animação suave
+      // Hide splash screen with smooth animation
       await SplashScreen.hideAsync();
     }
   }, [isReady]);

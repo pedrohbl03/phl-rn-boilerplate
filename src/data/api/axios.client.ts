@@ -23,7 +23,7 @@ export const createHttpClient = (storage: IStorage, baseURL: string = ''): IHttp
     },
   });
 
-  // Funções auxiliares
+  // Helper functions
   const normalizeError = (error: unknown): Error => {
     if (axios.isAxiosError(error)) {
       const message =
@@ -73,14 +73,14 @@ export const createHttpClient = (storage: IStorage, baseURL: string = ''): IHttp
       async (error) => {
         const originalRequest = error.config;
 
-        // Se receber 401 e não for retry, tenta refresh token
+        // If receives 401 and is not a retry, try refresh token
         if (error.response?.status === 401 && !originalRequest._retry) {
           originalRequest._retry = true;
 
           const refreshToken = storage.getString(STORAGE_KEYS.REFRESH_TOKEN);
           if (refreshToken) {
             try {
-              // TODO: Implementar lógica de refresh token
+              // TODO: Implement refresh token logic
               // const response = await post('/auth/refresh', { refreshToken });
               // storage.setString(STORAGE_KEYS.AUTH_TOKEN, response.data.token);
               // return client(originalRequest);
@@ -100,7 +100,7 @@ export const createHttpClient = (storage: IStorage, baseURL: string = ''): IHttp
   // Inicializa interceptors
   setupInterceptors();
 
-  // Métodos HTTP
+  // HTTP methods
   const get = async <T>(url: string, config?: RequestConfig): Promise<HttpResponse<T>> => {
     const response = await client.get<T>(url, toAxiosConfig(config));
     return toHttpResponse(response);

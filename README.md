@@ -1,71 +1,92 @@
+<p align="center">
+  <img src="hero-image.png" alt="PHL RN Boilerplate" />
+</p>
+
 # PHL RN Boilerplate
 
-Um boilerplate React Native moderno e pronto para produção, construído com Expo SDK 54, arquitetura MVVM e as melhores práticas de desenvolvimento mobile.
+A modern, production-ready React Native boilerplate built with Expo SDK 54, MVVM architecture, and mobile development best practices.
 
-## Sobre
+## 🚀 Installation
 
-Este template foi criado para acelerar o desenvolvimento de aplicativos React Native, fornecendo uma base sólida com arquitetura bem definida, gerenciamento de estado, internacionalização e estilização moderna.
+### Using npx (Recommended)
+
+```bash
+npx create-expo-app my-app -t phl-rn-boilerplate
+cd my-app
+```
+
+### Manual Clone
+
+```bash
+git clone https://github.com/pedrohbl03/phl-rn-boilerplate.git my-app
+cd my-app
+yarn install
+```
+
+## About
+
+This template was created to accelerate React Native app development, providing a solid foundation with well-defined architecture, state management, internationalization, and modern styling.
 
 **Package ID:** `com.phlstart.app`
 
-## Tecnologias
+## Tech Stack
 
-| Tecnologia | Versão | Descrição |
-|------------|--------|-----------|
-| **Expo** | SDK 54 | Framework para desenvolvimento React Native |
-| **React Native** | 0.81.5 | Framework mobile multiplataforma |
-| **TypeScript** | 5.9 | Superset JavaScript com tipagem estática |
-| **Expo Router** | 6.x | Navegação baseada em arquivos |
-| **NativeWind** | 4.x | Tailwind CSS para React Native |
-| **Zustand** | 5.x | Gerenciamento de estado global |
-| **React Query** | 5.x | Gerenciamento de estado do servidor |
-| **i18next** | 25.x | Internacionalização |
-| **MMKV** | 4.x | Storage de alta performance |
-| **Zod** | 3.x | Validação de schemas |
-| **React Hook Form** | 7.x | Gerenciamento de formulários |
+| Technology | Version | Description |
+|------------|---------|-------------|
+| **Expo** | SDK 54 | React Native development framework |
+| **React Native** | 0.81.5 | Cross-platform mobile framework |
+| **TypeScript** | 5.9 | JavaScript with static typing |
+| **Expo Router** | 6.x | File-based navigation |
+| **NativeWind** | 4.x | Tailwind CSS for React Native |
+| **Zustand** | 5.x | Global state management |
+| **React Query** | 5.x | Server state management |
+| **i18next** | 25.x | Internationalization |
+| **MMKV** | 4.x | High-performance storage |
+| **Zod** | 3.x | Schema validation |
+| **React Hook Form** | 7.x | Form management |
 
-## Arquitetura MVVM
+## MVVM Architecture
 
-O boilerplate implementa o padrão **Model-View-ViewModel (MVVM)**, que separa claramente as responsabilidades da aplicação em três camadas:
+The boilerplate implements the **Model-View-ViewModel (MVVM)** pattern, which clearly separates application responsibilities into three layers:
 
 ### Model
 
-Representa os dados e a lógica de negócio da aplicação.
+Represents the data and business logic of the application.
 
 ```
 src/
-├── domain/          # Entidades e regras de negócio
-│   ├── entities/    # Tipos e interfaces de domínio
-│   └── schemas/     # Schemas de validação (Zod)
-└── data/            # Camada de dados
-    ├── api/         # Cliente HTTP e interfaces
-    └── storage/     # Persistência local (MMKV)
+├── domain/          # Entities and business rules
+│   ├── entities/    # Domain types and interfaces
+│   └── schemas/     # Validation schemas (Zod)
+└── data/            # Data layer
+    ├── api/         # HTTP client and interfaces
+    └── storage/     # Local persistence (MMKV)
 ```
 
 ### View
 
-A interface do usuário. São componentes React puros que apenas renderizam a UI e delegam ações para o ViewModel.
+The user interface. Pure React components that only render the UI and delegate actions to the ViewModel.
 
 ```
 src/
-├── app/                    # Rotas (Expo Router)
+├── app/                    # Routes (Expo Router)
 │   └── (tabs)/             # Tab Navigator
 └── presentation/
-    └── screens/            # Telas da aplicação
+    └── screens/            # Application screens
         ├── HomeScreen.tsx
         ├── ArchScreen.tsx
         └── SettingsScreen.tsx
 ```
 
-**Características da View:**
-- Não contém lógica de negócio
-- Recebe dados formatados do ViewModel
-- Chama ações expostas pelo ViewModel
-- Responsável apenas pela renderização
+**View Characteristics:**
+- Contains no business logic
+- Receives formatted data from ViewModel
+- Calls actions exposed by ViewModel
+- Responsible only for rendering
 
 ### ViewModel
 
-A ponte entre Model e View. Contém a lógica de apresentação, gerencia o estado da tela e expõe dados e ações para a View.
+The bridge between Model and View. Contains presentation logic, manages screen state, and exposes data and actions to the View.
 
 ```
 src/
@@ -76,13 +97,13 @@ src/
         └── useSettingsViewModel.ts
 ```
 
-**Responsabilidades do ViewModel:**
-- Gerenciar estado da tela
-- Formatar dados para exibição
-- Expor ações que a View pode executar
-- Abstrair a lógica de negócio da View
+**ViewModel Responsibilities:**
+- Manage screen state
+- Format data for display
+- Expose actions that View can execute
+- Abstract business logic from View
 
-### Exemplo de Implementação
+### Implementation Example
 
 **ViewModel (`useSettingsViewModel.ts`):**
 ```typescript
@@ -91,11 +112,11 @@ export function useSettingsViewModel() {
   const { isDark, toggleTheme } = useTheme();
   const { language, setLanguage } = useAppStore();
 
-  // Dados formatados para a View
+  // Data formatted for the View
   const title = t('settings.title');
   const themeValue = isDark ? t('settings.dark') : t('settings.light');
 
-  // Ações disponíveis
+  // Available actions
   const handleToggleTheme = useCallback(() => {
     toggleTheme();
   }, [toggleTheme]);
@@ -124,56 +145,56 @@ export function SettingsScreen() {
 }
 ```
 
-### Benefícios do MVVM
+### MVVM Benefits
 
-- **Separação de responsabilidades**: Código mais organizado e fácil de manter
-- **Testabilidade**: ViewModels podem ser testados independentemente da UI
-- **Reutilização**: Lógica pode ser compartilhada entre diferentes Views
-- **Trabalho em equipe**: Desenvolvedores podem trabalhar em paralelo nas camadas
+- **Separation of concerns**: More organized and maintainable code
+- **Testability**: ViewModels can be tested independently of UI
+- **Reusability**: Logic can be shared between different Views
+- **Teamwork**: Developers can work in parallel on layers
 
-## Estrutura de Pastas
+## Folder Structure
 
 ```
 src/
-├── app/                    # Rotas (Expo Router)
-│   ├── _layout.tsx         # Layout raiz
+├── app/                    # Routes (Expo Router)
+│   ├── _layout.tsx         # Root layout
 │   └── (tabs)/             # Tab Navigator
-│       ├── _layout.tsx     # Layout das tabs
+│       ├── _layout.tsx     # Tabs layout
 │       ├── index.tsx       # Home
-│       ├── arch.tsx        # Arquitetura
-│       └── settings.tsx    # Configurações
+│       ├── arch.tsx        # Architecture
+│       └── settings.tsx    # Settings
 │
-├── components/             # Componentes reutilizáveis
-│   └── ui/                 # Componentes de UI base
+├── components/             # Reusable components
+│   └── ui/                 # Base UI components
 │       ├── Button.tsx
 │       ├── Card.tsx
 │       ├── Input.tsx
 │       └── Text.tsx
 │
-├── core/                   # Configurações e bootstrap
+├── core/                   # Configuration and bootstrap
 │   └── config/
-│       ├── bootstrap.ts    # Inicialização da app
-│       └── env.ts          # Variáveis de ambiente
+│       ├── bootstrap.ts    # App initialization
+│       └── env.ts          # Environment variables
 │
-├── data/                   # Camada de dados
-│   ├── api/                # Cliente HTTP (Axios)
-│   └── storage/            # Storage local (MMKV)
+├── data/                   # Data layer
+│   ├── api/                # HTTP client (Axios)
+│   └── storage/            # Local storage (MMKV)
 │
-├── domain/                 # Domínio da aplicação
-│   ├── entities/           # Entidades/tipos
-│   └── schemas/            # Schemas Zod
+├── domain/                 # Application domain
+│   ├── entities/           # Entities/types
+│   └── schemas/            # Zod schemas
 │
-├── hooks/                  # Hooks customizados
+├── hooks/                  # Custom hooks
 │   ├── useApi.ts
 │   └── useForm.ts
 │
-├── i18n/                   # Internacionalização
+├── i18n/                   # Internationalization
 │   ├── index.ts
 │   └── locales/
 │       ├── pt-BR.ts
 │       └── en-US.ts
 │
-├── presentation/           # Camada de apresentação (MVVM)
+├── presentation/           # Presentation layer (MVVM)
 │   ├── screens/            # Views
 │   └── viewmodels/         # ViewModels
 │
@@ -182,53 +203,53 @@ src/
 │   ├── ThemeProvider.tsx
 │   └── query-client.ts
 │
-├── stores/                 # Estado global (Zustand)
+├── stores/                 # Global state (Zustand)
 │   └── app.store.ts
 │
-├── styles/                 # Estilos globais
+├── styles/                 # Global styles
 │   └── global.css
 │
-└── types/                  # Tipos globais
+└── types/                  # Global types
     └── global.d.ts
 ```
 
 ## Setup
 
-### Pré-requisitos
+### Prerequisites
 
 - Node.js 18+
-- Yarn ou npm
-- Android Studio (para Android)
-- Xcode (para iOS, apenas macOS)
+- Yarn or npm
+- Android Studio (for Android)
+- Xcode (for iOS, macOS only)
 
-### Instalação
+### Installation
 
-1. Clone o repositório:
+1. Clone the repository:
 ```bash
-git clone https://github.com/seu-usuario/phl-rn-boilerplate.git
+git clone https://github.com/your-username/phl-rn-boilerplate.git
 cd phl-rn-boilerplate
 ```
 
-2. Instale as dependências:
+2. Install dependencies:
 ```bash
 yarn install
-# ou
+# or
 npm install
 ```
 
-3. Configure as variáveis de ambiente:
+3. Configure environment variables:
 ```bash
 cp .env.example .env
 ```
 
-4. **Execute o prebuild** (veja seção abaixo):
+4. **Run prebuild** (see section below):
 ```bash
 npx expo prebuild
 ```
 
-5. Inicie o projeto:
+5. Start the project:
 ```bash
-# Desenvolvimento
+# Development
 yarn start
 
 # Android
@@ -238,54 +259,54 @@ yarn android
 yarn ios
 ```
 
-## Prebuild: Por que é necessário?
+## Prebuild: Why is it necessary?
 
-### O que é o Prebuild?
+### What is Prebuild?
 
-O comando `npx expo prebuild` (ou `expo prebuild`) gera as pastas nativas `android/` e `ios/` do projeto. Este processo é essencial quando você utiliza o **Expo com módulos nativos**.
+The `npx expo prebuild` (or `expo prebuild`) command generates the native `android/` and `ios/` folders of the project. This process is essential when using **Expo with native modules**.
 
-### Por que precisamos do Prebuild?
+### Why do we need Prebuild?
 
-Este boilerplate utiliza bibliotecas que requerem código nativo:
+This boilerplate uses libraries that require native code:
 
-| Biblioteca | Motivo |
-|------------|--------|
-| **react-native-mmkv** | Storage nativo de alta performance |
-| **react-native-reanimated** | Animações nativas |
-| **react-native-gesture-handler** | Gestos nativos |
-| **react-native-screens** | Navegação nativa otimizada |
+| Library | Reason |
+|---------|--------|
+| **react-native-mmkv** | High-performance native storage |
+| **react-native-reanimated** | Native animations |
+| **react-native-gesture-handler** | Native gestures |
+| **react-native-screens** | Optimized native navigation |
 
-Essas bibliotecas não funcionam com o **Expo Go** (o app de desenvolvimento padrão do Expo), pois contêm código nativo customizado que precisa ser compilado.
+These libraries don't work with **Expo Go** (Expo's default development app) because they contain custom native code that needs to be compiled.
 
-### Fluxo de Desenvolvimento
+### Development Flow
 
 ```
 ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
-│  expo prebuild  │ ──▶ │  Gera android/  │ ──▶ │  expo run:*     │
-│                 │     │  e ios/         │     │  ou yarn *      │
+│  expo prebuild  │ ──▶ │  Generates      │ ──▶ │  expo run:*     │
+│                 │     │  android/ & ios/│     │  or yarn *      │
 └─────────────────┘     └─────────────────┘     └─────────────────┘
 ```
 
-### Quando executar o Prebuild?
+### When to run Prebuild?
 
-- **Primeira vez** clonando o projeto
-- Após adicionar uma **nova biblioteca nativa**
-- Após modificar o `app.json` (nome, ícone, splash, etc.)
-- Após atualizar o **Expo SDK**
+- **First time** cloning the project
+- After adding a **new native library**
+- After modifying `app.json` (name, icon, splash, etc.)
+- After updating the **Expo SDK**
 
-### Comandos Úteis
+### Useful Commands
 
 ```bash
-# Gerar pastas nativas
+# Generate native folders
 npx expo prebuild
 
-# Limpar e regenerar (útil após problemas)
+# Clean and regenerate (useful after issues)
 npx expo prebuild --clean
 
-# Gerar apenas Android
+# Generate Android only
 npx expo prebuild --platform android
 
-# Gerar apenas iOS
+# Generate iOS only
 npx expo prebuild --platform ios
 ```
 
@@ -293,74 +314,74 @@ npx expo prebuild --platform ios
 
 | Expo Go | Development Build |
 |---------|-------------------|
-| App pronto para download | Build customizado |
-| Limitado a APIs do Expo | Suporta qualquer biblioteca nativa |
-| Não precisa de prebuild | Requer prebuild |
-| Ótimo para prototipagem | Necessário para produção |
+| Ready-to-download app | Custom build |
+| Limited to Expo APIs | Supports any native library |
+| No prebuild needed | Requires prebuild |
+| Great for prototyping | Required for production |
 
-Este boilerplate usa **Development Build**, que oferece total flexibilidade para usar qualquer biblioteca nativa.
+This boilerplate uses **Development Build**, which offers full flexibility to use any native library.
 
-## Funcionalidades Incluídas
+## Included Features
 
-- **Tab Navigator** com 3 telas (Home, Arquitetura, Configurações)
-- **Dark/Light Mode** com persistência
-- **Internacionalização** (Português e Inglês)
-- **Persistência** de preferências no MMKV
-- **Componentes UI** reutilizáveis (Button, Card, Input, Text)
-- **Cliente HTTP** configurado (Axios)
-- **Validação** de formulários (Zod + React Hook Form)
-- **Estado global** (Zustand com persistência)
-- **Estado do servidor** (React Query)
+- **Tab Navigator** with 3 screens (Home, Architecture, Settings)
+- **Dark/Light Mode** with persistence
+- **Internationalization** (Portuguese and English)
+- **Persistence** of preferences in MMKV
+- **Reusable UI Components** (Button, Card, Input, Text)
+- **Configured HTTP Client** (Axios)
+- **Form Validation** (Zod + React Hook Form)
+- **Global State** (Zustand with persistence)
+- **Server State** (React Query)
 
-## Scripts Disponíveis
+## Available Scripts
 
 ```bash
-yarn start       # Inicia o Metro Bundler
-yarn android     # Roda no Android
-yarn ios         # Roda no iOS
-yarn web         # Roda no navegador
+yarn start       # Start Metro Bundler
+yarn android     # Run on Android
+yarn ios         # Run on iOS
+yarn web         # Run in browser
 ```
 
-## Personalização
+## Customization
 
-### Alterar Package ID
+### Change Package ID
 
-1. Atualize `app.json`:
+1. Update `app.json`:
 ```json
 {
   "expo": {
     "ios": {
-      "bundleIdentifier": "com.seudominio.app"
+      "bundleIdentifier": "com.yourdomain.app"
     },
     "android": {
-      "package": "com.seudominio.app"
+      "package": "com.yourdomain.app"
     }
   }
 }
 ```
 
-2. Execute o prebuild:
+2. Run prebuild:
 ```bash
 npx expo prebuild --clean
 ```
 
-### Adicionar Novo Idioma
+### Add New Language
 
-1. Crie o arquivo de tradução em `src/i18n/locales/`
-2. Importe e registre em `src/i18n/index.ts`
-3. Adicione a opção em `useSettingsViewModel.ts`
+1. Create translation file in `src/i18n/locales/`
+2. Import and register in `src/i18n/index.ts`
+3. Add option in `useSettingsViewModel.ts`
 
-### Criar Nova Tela (MVVM)
+### Create New Screen (MVVM)
 
-1. Crie o ViewModel em `src/presentation/viewmodels/`
-2. Crie a Screen em `src/presentation/screens/`
-3. Crie a rota em `src/app/`
-4. Exporte nos arquivos `index.ts`
+1. Create ViewModel in `src/presentation/viewmodels/`
+2. Create Screen in `src/presentation/screens/`
+3. Create route in `src/app/`
+4. Export in `index.ts` files
 
-## Licença
+## License
 
 MIT
 
 ---
 
-Desenvolvido com ❤️ por PhL
+Developed with ❤️ by PhL

@@ -121,7 +121,7 @@ export function SettingsScreen() {
   );
 }
 
-// Componente auxiliar para opções de idioma
+// Helper component for language options
 interface LanguageOptionProps {
   label: string;
   value: Language;
